@@ -93,9 +93,9 @@
                 <small><?php echo date("j.n.Y H:i", (int) $item->timestamp) ?></small></h2>
 
             <?php if (isset($item->{'content:encoded'})): ?>
-                <div><?php //echo $item->{'content:encoded'} ?></div>
+                <div><?php echo $item->{'content:encoded'} ?></div>
             <?php else: ?>
-                <p><?php //echo htmlSpecialChars($item->description) ?></p>
+                <p><?php echo htmlSpecialChars($item->description) ?></p>
             <?php endif ?>
         <?php endforeach ?>
 
