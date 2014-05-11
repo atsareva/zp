@@ -6,11 +6,9 @@ CREATE TABLE `cities` (
   PRIMARY KEY (`entity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-
 DROP TABLE IF EXISTS `feeds`;
 CREATE TABLE `feeds` (
   `entity_id` int(11) NOT NULL AUTO_INCREMENT,
-  `feed_id` int(11) NOT NULL,
   `feed_name` varchar(255) NOT NULL,
   `rss_link` varchar(255) NOT NULL,
   `update_frequency` int(11) NOT NULL,
@@ -18,6 +16,19 @@ CREATE TABLE `feeds` (
   PRIMARY KEY (`entity_id`),
   KEY `city_id` (`city_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO  `rss`.`feeds` (`entity_id` , `feed_name`, `rss_link`)
+VALUES (
+NULL , 'Reporter UA', 'http://reporter-ua.com/xml_export/yandex'
+), (
+NULL , 'В Городе','http://zp.vgorode.ua/rss2.xml?city_id=35'
+), (
+NULL , '061.ua', 'http://www.061.ua/rss'
+), (
+NULL , 'Голос Запорожья', 'http://golos.zp.ua/novosti?format=feed&type=rss'
+), (
+NULL , 'Запорожье.comments.ua', 'http://zp.comments.ua/export/rss_zp_ru.xml'
+);
 
 DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (

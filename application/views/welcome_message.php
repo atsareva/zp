@@ -84,19 +84,19 @@
             <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
         </div>
 
-        <h1><?php echo $title ?></h1>
+        <h1><?php //echo $title ?></h1>
 
-        <p><i><?php echo $description ?></i></p>
+        <p><i><?php //echo $description ?></i></p>
 
         <?php foreach ($items as $item): ?>
-            <h2><a href="<?php echo htmlSpecialChars($item->link) ?>"><?php echo htmlSpecialChars($item->title) ?></a>
-                <small><?php echo date("j.n.Y H:i", (int) $item->timestamp) ?></small></h2>
+            <h2><a href="<?php echo htmlSpecialChars($item->news_link) ?>"><?php echo htmlSpecialChars($item->news_title) ?></a>
+                <small><?php echo date("j.n.Y H:i", (int) $item->news_date) ?></small></h2>
 
-            <?php if (isset($item->{'content:encoded'})): ?>
+            <?php /*if (isset($item->{'content:encoded'})): ?>
                 <div><?php echo $item->{'content:encoded'} ?></div>
             <?php else: ?>
                 <p><?php echo htmlSpecialChars($item->description) ?></p>
-            <?php endif ?>
+            <?php endif*/ ?>
         <?php endforeach ?>
 
     </body>
