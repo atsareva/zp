@@ -5,13 +5,13 @@ class News extends CI_Model {
     const TABLE_NAME = 'news';
 
     public function getAll() {
-        $this->db->order_by('news_date', 'desc');
-        $query = $this->db->get(self::TABLE_NAME);
+        $this->db->order_by('date', 'desc');
+        $query = $this->db->get(self::TABLE_NAME, 7);
         return $query->result();
     }
 
     public function getLastByFeedId($feedId) {
-        $this->db->order_by('news_date', 'desc');
+        $this->db->order_by('date', 'desc');
         $query = $this->db->get_where(self::TABLE_NAME, array('feed_id' => (int) $feedId), 1);
         $res   = $query->result();
         if (isset($res[0])) {

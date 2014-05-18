@@ -27,20 +27,20 @@ class Cron extends CI_Controller {
     private function _saveNews($feedId, $item) {
         $data = array(
             'feed_id'    => $feedId,
-            'news_title' => (string) $item->title,
-            'news_link'  => (string) $item->link,
-            'news_date'  => (int) $item->timestamp,
+            'title' => (string) $item->title,
+            'link'  => (string) $item->link,
+            'date'  => (int) $item->timestamp,
         );
 
         if (isset($item->{'content:encoded'})) {
-            $data['news_text'] = (string) $item->{'content:encoded'};
+            $data['text'] = (string) $item->{'content:encoded'};
         } else {
-            $data['news_text'] = (string) $item->description;
+            $data['text'] = (string) $item->description;
         }
 
         $id = $this->news->save($data);
 
-        $message = 'ID=' . $id . ' (' . date('Y-m-d H:i') . ') ' . $data['news_title'];
+        $message = 'ID=' . $id . ' (' . date('Y-m-d H:i') . ') ' . $data['title'];
         writeToLog($this->_logFolder . DIRECTORY_SEPARATOR . self::LOF_FILE, $message);
     }
 
@@ -52,7 +52,7 @@ class Cron extends CI_Controller {
 
             foreach ($feed->item as $item) {
                 if ($lastNews) {
-                    if ($lastNews->news_date < (int) $item->timestamp) {
+                    if ($lastNews->date < (int) $item->timestamp) {
                         $this->_saveNews($feedItem->entity_id, $item);
                     }
                 } else {

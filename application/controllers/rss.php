@@ -6,18 +6,19 @@ if (!defined('BASEPATH')) {
 
 class Rss extends CI_Controller {
 
+    private function _loadViews($templateName, $title, $data) {
+        $this->load->view('page/head', array('title' => $title));
+        $this->load->view('page/header');
+        $this->load->view($templateName, $data);
+        $this->load->view('page/footer');
+    }
+
     public function index() {
         $this->load->model('news');
-        $res = $this->news->getAll();
-
-//        $this->load->library('parser');
-//        $rss = $this->parser->loadRss('http://zp.comments.ua/export/rss_zp_ru.xml');
-////        
-////        $data['title'] = htmlSpecialChars($rss->title);
-////        $data['description'] = htmlSpecialChars($rss->description);
+        $res           = $this->news->getAll();
         $data['items'] = $res;
 
-        $this->load->view('welcome_message', $data);
+        $this->_loadViews('template', 'Новости Запорожья', $data);
     }
 
 }
