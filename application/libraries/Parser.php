@@ -9,7 +9,7 @@
  * @link       http://phpfashion.com/
  * @version    1.1
  */
-class Feed {
+class Parser {
 
     /** @var int */
     public static $cacheExpire = 86400; // 1 day
